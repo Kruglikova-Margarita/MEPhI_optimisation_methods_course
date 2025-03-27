@@ -1,0 +1,443 @@
+\chapter{Транспортная задача}
+
+Решить транспортную задачу с m = 3 поставщиками и n = 7 потребителями. Данные о запасах, спросе и стоимости транспортировки приведены в таблице.
+
+\begin{center}
+    \begin{tabular}{|a | c | c | c | c | c | c | c | c|} 
+         \hline
+         \rowcolor{LightGray}
+            & 1 & 2 & 3 & 4 & 5 & 6 & 7 & запасы\\
+         \hline
+            1 & 5 & 8 & 1 & 4 & 2 & 7 & 3 & 150\\
+         \hline
+            2 & 3 & 6 & 4 & 9 & 1 & 8 & 2 & 100\\
+         \hline
+            3 & 7 & 1 & 5 & 8 & 3 & 2 & 4 & 150\\
+         \hline
+            спрос & 60 & 40 & 70 & 50 & 90 & 40 & 50 & $\sum =$ 400\\
+        \hline
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    {\bf
+    Решение:}
+\end{center}
+
+$5x_{11} + 8x_{12} + x_{13} + 4x_{14} + 2x_{15} + 7x_{16} + 3x_{17} + 3x_{21} + 6x_{22} + 4x_{23} + 9x_{24} +\\+ x_{25} + 8x_{26} + 2x_{27} + 7x_{31} + x_{32} + 5x_{33} + 8x_{34} + 3x_{35} + 2x_{36} + 4x_{37} \rightarrow min$
+
+\begin{equation*}
+    \begin{cases}
+        x_{11} + x_{12} + x_{13} + x_{14} + x_{15} + x_{16} + x_{17} = 150\\
+        x_{21} + x_{22} + x_{23} + x_{24} + x_{25} + x_{26} + x_{27} = 100\\
+        x_{31} + x_{32} + x_{33} + x_{34} + x_{35} + x_{36} + x_{37} = 150\\
+        x_{11} + x_{21} + x_{31} = 60\\
+        x_{12} + x_{22} + x_{32} = 40\\
+        x_{13} + x_{23} + x_{33} = 70\\
+        x_{14} + x_{24} + x_{34} = 50\\
+        x_{15} + x_{25} + x_{35} = 90\\
+        x_{16} + x_{26} + x_{36} = 40\\
+        x_{17} + x_{27} + x_{37} = 50\\
+        x_{ij} \ge 0, i = \overline{1, 3}, j = \overline{1, 7} 
+    \end{cases}
+\end{equation*}
+
+\begin{flushleft}
+{\bf1) Проверим необходимое и достаточное условие разрешимости задачи:}\\
+Сумма запасов $= 150 + 100 + 150 = 400$\\
+Сумма спросов $= 60 + 40 + 70 + 50 + 90 + 40 + 50 = 400$\\
+Условие баланса соблюдается. Запасы равны потребностям. Следовательно, модель транспортной задачи является закрытой.\\
+
+{\bf2) Найдем начальное опорное решение}\\
+{\bf2.1) Через метод северо-западного угла:}
+\end{flushleft}
+
+\begin{center}
+    \begin{tabular}{|a | c | c | c | c | c | c | c | c|} 
+         \hline
+         \rowcolor{LightGray}
+            & 1 & 2 & 3 & 4 & 5 & 6 & 7 & запасы\\
+         \hline
+            1 & \cellcolor{Beige} $5^{60}$ & \cellcolor{Beige} $8^{40}$ & \cellcolor{Beige} $1^{50}$ & 4 & 2 & 7 & 3 & 150\\
+         \hline
+            2 & 3 & 6 & \cellcolor{Beige} $4^{20}$ & \cellcolor{Beige} $9^{50}$ & \cellcolor{Beige} $1^{30}$ & 8 & 2 & 100\\
+         \hline
+            3 & 7 & 1 & 5 & 8 & \cellcolor{Beige} $3^{60}$ & \cellcolor{Beige} $2^{40}$ & \cellcolor{Beige} $4^{50}$ & 150\\
+         \hline
+            спрос & 60 & 40 & 70 & 50 & 90 & 40 & 50 & $\sum =$ 400\\
+        \hline
+    \end{tabular}
+\end{center}
+
+\begin{flushleft}
+Число закрашенных клеток: 9\\
+$m + n - 1 = 3 + 7 - 1 = 9$\\
+Значит опорный план невырожденный\\
+Значение целевой функции:\\
+$F(x) = 5 \cdot 60 + 8 \cdot 40 + 1 \cdot 50 + 4 \cdot 20 + 9 \cdot 50 + 1 \cdot 30 + 3 \cdot 60 + 2 \cdot 40 + 4 \cdot 50 = 1690$
+
+{\bf2.2) Через метод минимальных элементов:}
+\end{flushleft}
+
+\begin{center}
+    \begin{tabular}{|a | c | c | c | c | c | c | c | c|} 
+         \hline
+         \rowcolor{LightGray}
+            & 1 & 2 & 3 & 4 & 5 & 6 & 7 & запасы\\
+         \hline
+            1 & 5 & 8 & \cellcolor{Beige} $1^{70}$ & \cellcolor{Beige} $4^{40}$ & 2 & 7 & \cellcolor{Beige} $3^{40}$ & 150\\
+         \hline
+            2 & 3 & 6 & 4 & 9 & \cellcolor{Beige} $1^{90}$ & 8 & \cellcolor{Beige} $2^{10}$ & 100\\
+         \hline
+            3 & \cellcolor{Beige} $7^{60}$ & \cellcolor{Beige} $1^{40}$ & 5 & \cellcolor{Beige} $8^{10}$ & 3 & \cellcolor{Beige} $2^{40}$ & 4 & 150\\
+         \hline
+            спрос & 60 & 40 & 70 & 50 & 90 & 40 & 50 & $\sum =$ 400\\
+        \hline
+    \end{tabular}
+\end{center}
+
+\begin{flushleft}
+Число закрашенных клеток: 9\\
+$m + n - 1 = 3 + 7 - 1 = 9$\\
+Значит опорный план невырожденный\\
+Значение целевой функции:\\
+$F(x) = 7 \cdot 60 + 1 \cdot 40 + 1 \cdot 70 + 4 \cdot 40 + 8 \cdot 10 + 1 \cdot 90 + 2 \cdot 40 + 3 \cdot 40 + 2 \cdot 10 = 1080$
+{\bf3) Решим задачу с помощью методов потенциалов}\\
+В качестве опорного решение возьмем решение, полученное методом северно-западного угла.
+\end{flushleft}
+
+\begin{center}
+    \begin{tabular}{|a | c | c | c | c | c | c | c | c|} 
+         \hline
+         \rowcolor{LightGray}
+            & 1 & 2 & 3 & 4 & 5 & 6 & 7 & $v_{i}$\\
+         \hline
+            1 & \cellcolor{Beige} $5^{60}$ & \cellcolor{Beige} $8^{40}$ & \cellcolor{Beige} $1^{50}$ & 4 & 2 & 7 & 3 & $v_1 = 5$\\
+         \hline
+            2 & 3 & 6 & \cellcolor{Beige} $4^{20}$ & \cellcolor{Beige} $9^{50}$ & \cellcolor{Beige} $1^{30}$ & 8 & 2 & $v_2 = 8$\\
+         \hline
+            3 & 7 & 1 & 5 & 8 & \cellcolor{Beige} $3^{60}$ & \cellcolor{Beige} $2^{40}$ & \cellcolor{Beige} $4^{50}$ & $v_3 = 10$\\
+         \hline
+            $u_{i}$ & $u_1 = 0$ & $u_2 = 3$ & $u_3 = -4$ & $u_4 = 1$ & $u_5 = -7$ & $u_6 = -8$ & $u_7 = -6$ & \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\begin{flushleft}
+Рассчитаем $d_{ij} = c_{ij} - u_{j} - v_{i}$\\
+$d_{14} = 4 - 1 - 5 = -2$\\
+$d_{15} = 2 - (-7) - 5 = 4$\\
+$d_{16} = 7 - (-8) - 5 = 10$\\
+$d_{17} = 3 - (-6) - 5 = 4$\\
+$d_{21} = 3 - 0 - 8 = -5$\\
+$d_{22} = 6 - 3 - 8 = -5$\\
+$d_{26} = 8 - (-8) - 8 = 8$\\
+$d_{27} = 2 - (-6) - 8 = 0$\\
+$d_{31} = 7 - 0 - 10 = -3$\\
+$d_{32} = 1 - 3 - 10 = -12$\\
+$d_{33} = 5 - (-4) - 10 = -1$\\
+$d_{34} = 8 - 1 - 10 = -3$\\
+Не все $d_{ij} \ge 0 \implies$ решение не оптимально.\\
+Минимальное $d_{ij} = d_{32} = -12 \implies$ клетка пересчета: (3; 2)\\
+Цикл пересчета:\\
+$(3; 2) \rightarrow (3; 3) \rightarrow (3; 4) \rightarrow (3; 5) \rightarrow (2; 5) \rightarrow (2; 4) \rightarrow (2; 3) \rightarrow (1; 3) \rightarrow (1; 2) \rightarrow (2; 2) \rightarrow (3; 2)$
+\end{flushleft}
+
+\begin{center}
+    \begin{tabular}{|a | c | c | c | c | c | c | c | c|} 
+         \hline
+         \rowcolor{LightGray}
+            & 1 & 2 & 3 & 4 & 5 & 6 & 7 & $v_{i}$\\
+         \hline
+            1 & \cellcolor{Beige} $5^{60}$ & \cellcolor{Beige} $8^{40}$ {\bf-} & \cellcolor{Beige} $1^{50}$ {\bf+} & 4 & 2 & 7 & 3 & $v_1 = 5$\\
+         \hline
+            2 & 3 & 6 & \cellcolor{Beige} $4^{20}$ {\bf-} & \cellcolor{Beige} $9^{50}$ & \cellcolor{Beige} $1^{30}$ {\bf+} & 8 & 2 & $v_2 = 8$\\
+         \hline
+            3 & 7 & 1 {\bf+} & 5 & 8 & \cellcolor{Beige} $3^{60}$ {\bf-} & \cellcolor{Beige} $2^{40}$ & \cellcolor{Beige} $4^{50}$ & $v_3 = 10$\\
+         \hline
+            $u_{i}$ & $u_1 = 0$ & $u_2 = 3$ & $u_3 = -4$ & $u_4 = 1$ & $u_5 = -7$ & $u_6 = -8$ & $u_7 = -6$ & \\
+        \hline
+    \end{tabular}
+\end{center}
+
+Новый опорный план:
+\begin{center}
+    \begin{tabular}{|a | c | c | c | c | c | c | c | c|} 
+         \hline
+         \rowcolor{LightGray}
+            & 1 & 2 & 3 & 4 & 5 & 6 & 7 & $v_{i}$\\
+         \hline
+            1 & \cellcolor{Beige} $5^{60}$ & \cellcolor{Beige} $8^{20}$ & \cellcolor{Beige} $1^{70}$ & 4 & 2 & 7 & 3 & $v_1 = 5$\\
+         \hline
+            2 & 3 & 6 & 4 & \cellcolor{Beige} $9^{50}$ & \cellcolor{Beige} $1^{50}$ & 8 & 2 & $v_2 = -4$\\
+         \hline
+            3 & 7 & \cellcolor{Beige} $1^{20}$ & 5 & 8 & \cellcolor{Beige} $3^{40}$ & \cellcolor{Beige} $2^{40}$ & \cellcolor{Beige} $4^{50}$ & $v_3 = -2$\\
+         \hline
+            $u_{i}$ & $u_1 = 0$ & $u_2 = 3$ & $u_3 = -4$ & $u_4 = 13$ & $u_5 = 5$ & $u_6 = 4$ & $u_7 = 6$ & \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\begin{flushleft}
+Число закрашенных клеток: 9\\
+$m + n - 1 = 3 + 7 - 1 = 9$\\
+Значит опорный план невырожденный\\
+Проверим на оптимальность:\\
+$d_{14} = 4 - 13 - 5 = -14$\\
+$d_{15} = 2 - 5 - 5 = -8$\\
+$d_{16} = 7 - 4 - 5 = -2$\\
+$d_{17} = 3 - 6 - 5 = -8$\\
+$d_{21} = 3 - 0 - (-4) = 7$\\
+$d_{22} = 6 - 3 - (-4) = 7$\\
+$d_{23} = 4 - (-4) - (-4) = 12$\\
+$d_{26} = 8 - 4 - (-4) = 8$\\
+$d_{27} = 2 - 6 - (-4) = 0$\\
+$d_{31} = 7 - 0 - (-2) = 9$\\
+$d_{33} = 5 - (-4) - (-2) = 11$\\
+$d_{34} = 8 - 13 - (-2) = -3$\\
+Не все $d_{ij} \ge 0 \implies$ решение не оптимально.\\
+Минимальное $d_{ij} = d_{14} = -14 \implies$ клетка пересчета: (1; 4)\\
+Цикл пересчета:\\
+$(1; 4) \rightarrow (1; 3) \rightarrow (1; 2) \rightarrow (2; 2) \rightarrow (3; 2) \rightarrow (3; 3) \rightarrow (3; 4) \rightarrow (3; 5) \rightarrow (2; 5) \rightarrow (2; 4) \rightarrow (1; 4)$
+\end{flushleft}
+
+\begin{center}
+    \begin{tabular}{|a | c | c | c | c | c | c | c | c|} 
+         \hline
+         \rowcolor{LightGray}
+            & 1 & 2 & 3 & 4 & 5 & 6 & 7 & $v_{i}$\\
+         \hline
+            1 & \cellcolor{Beige} $5^{60}$ & \cellcolor{Beige} $8^{20}$ {\bf-} & \cellcolor{Beige} $1^{70}$ & 4 {\bf+} & 2 & 7 & 3 & $v_1 = 5$\\
+         \hline
+            2 & 3 & 6 & 4 & \cellcolor{Beige} $9^{50}$ {\bf-} & \cellcolor{Beige} $1^{50}$ {\bf+} & 8 & 2 & $v_2 = -4$\\
+         \hline
+            3 & 7 & \cellcolor{Beige} $1^{20}$ {\bf+} & 5 & 8 & \cellcolor{Beige} $3^{40}$ {\bf-} & \cellcolor{Beige} $2^{40}$ & \cellcolor{Beige} $4^{50}$ & $v_3 = -2$\\
+         \hline
+            $u_{i}$ & $u_1 = 0$ & $u_2 = 3$ & $u_3 = -4$ & $u_4 = 13$ & $u_5 = 5$ & $u_6 = 4$ & $u_7 = 6$ & \\
+        \hline
+    \end{tabular}
+\end{center}
+
+Новый опорный план:
+\begin{center}
+    \begin{tabular}{|a | c | c | c | c | c | c | c | c|} 
+         \hline
+         \rowcolor{LightGray}
+            & 1 & 2 & 3 & 4 & 5 & 6 & 7 & $v_{i}$\\
+         \hline
+            1 & \cellcolor{Beige} $5^{60}$ & 8 & \cellcolor{Beige} $1^{70}$ & \cellcolor{Beige} $4^{20}$ & 2 & 7 & 3 & {\small$v_1 = 5$}\\
+         \hline
+            2 & 3 & 6 & 4 & \cellcolor{Beige} $9^{30}$ & \cellcolor{Beige} $1^{70}$ & 8 & 2 & {\small$v_2 = 10$}\\
+         \hline
+            3 & 7 & \cellcolor{Beige} $1^{40}$ & 5 & 8 & \cellcolor{Beige} $3^{20}$ & \cellcolor{Beige} $2^{40}$ & \cellcolor{Beige} $4^{50}$ & {\small$v_3 = 12$}\\
+         \hline
+            $u_{i}$ & {\small$u_1 = 0$} & {\small$u_2 = -11$} & {\small$u_3 = -4$} & {\small$u_4 = -1$} & {\small$u_5 = -9$} & {\small$u_6 = -10$} & {\small$u_7 = -8$} & \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\begin{flushleft}
+Число закрашенных клеток: 9\\
+$m + n - 1 = 3 + 7 - 1 = 9$\\
+Значит опорный план невырожденный\\
+Проверим на оптимальность:\\
+$d_{12} = 8 - (-11) - 5 = 14$\\
+$d_{15} = 2 - (-9) - 5 = 6$\\
+$d_{16} = 7 - (-10) - 5 = 12$\\
+$d_{17} = 3 - (-8) - 5 = 6$\\
+$d_{21} = 3 - 0 - 10 = -7$\\
+$d_{22} = 6 - (-11) - 10 = 7$\\
+$d_{23} = 4 - (-4) - 10 = -2$\\
+$d_{26} = 8 - (-10) - 10 = 8$\\
+$d_{27} = 2 - (-8) - 10 = 0$\\
+$d_{31} = 7 - 0 - 12 = -5$\\
+$d_{33} = 5 - (-4) - 12 = -3$\\
+$d_{34} = 8 - (-1) - 12 = -3$\\
+Не все $d_{ij} \ge 0 \implies$ решение не оптимально.\\
+Минимальное $d_{ij} = d_{21} = -7 \implies$ клетка пересчета: (2; 1)\\
+Цикл пересчета:\\
+$(2; 1) \rightarrow (1; 1) \rightarrow (1; 2) \rightarrow (1; 3) \rightarrow (1; 4) \rightarrow (2; 4) \rightarrow (2; 3) \rightarrow (2; 2) \rightarrow (2; 1)$
+\end{flushleft}
+
+\begin{center}
+    \begin{tabular}{|a | c | c | c | c | c | c | c | c|} 
+         \hline
+         \rowcolor{LightGray}
+            & 1 & 2 & 3 & 4 & 5 & 6 & 7 & $v_{i}$\\
+         \hline
+            1 & \cellcolor{Beige} $5^{60}$ {\bf-} & 8 & \cellcolor{Beige} $1^{70}$ & \cellcolor{Beige} $4^{20}$ {\bf+} & 2 & 7 & 3 & {\small$v_1 = 5$}\\
+         \hline
+            2 & 3 {\bf+} & 6 & 4 & \cellcolor{Beige} $9^{30}$ {\bf-} & \cellcolor{Beige} $1^{70}$ & 8 & 2 & {\small$v_2 = 10$}\\
+         \hline
+            3 & 7 & \cellcolor{Beige} $1^{40}$ & 5 & 8 & \cellcolor{Beige} $3^{20}$ & \cellcolor{Beige} $2^{40}$ & \cellcolor{Beige} $4^{50}$ & {\small$v_3 = 12$}\\
+         \hline
+            $u_{i}$ & {\small$u_1 = 0$} & {\small$u_2 = -11$} & {\small$u_3 = -4$} & {\small$u_4 = -1$} & {\small$u_5 = -9$} & {\small$u_6 = -10$} & {\small$u_7 = -8$} & \\
+        \hline
+    \end{tabular}
+\end{center}
+
+Новый опорный план:
+\begin{center}
+    \begin{tabular}{|a | c | c | c | c | c | c | c | c|} 
+         \hline
+         \rowcolor{LightGray}
+            & 1 & 2 & 3 & 4 & 5 & 6 & 7 & $v_{i}$\\
+         \hline
+            1 & \cellcolor{Beige} $5^{30}$ & 8 & \cellcolor{Beige} $1^{70}$ & \cellcolor{Beige} $4^{50}$ & 2 & 7 & 3 & {\small$v_1 = 5$}\\
+         \hline
+            2 & \cellcolor{Beige} $3^{30}$ & 6 & 4 & 9 & \cellcolor{Beige} $1^{70}$ & 8 & 2 & {\small$v_2 = 3$}\\
+         \hline
+            3 & 7 & \cellcolor{Beige} $1^{40}$ & 5 & 8 & \cellcolor{Beige} $3^{20}$ & \cellcolor{Beige} $2^{40}$ & \cellcolor{Beige} $4^{50}$ & {\small$v_3 = 5$}\\
+         \hline
+            $u_{i}$ & {\small$u_1 = 0$} & {\small$u_2 = -4$} & {\small$u_3 = -4$} & {\small$u_4 = -1$} & {\small$u_5 = -2$} & {\small$u_6 = -3$} & {\small$u_7 = -1$} & \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\begin{flushleft}
+Число закрашенных клеток: 9\\
+$m + n - 1 = 3 + 7 - 1 = 9$\\
+Значит опорный план невырожденный\\
+Проверим на оптимальность:\\
+$d_{12} = 8 - (-4) - 5 = 7$\\
+$d_{15} = 2 - (-2) - 5 = -1$\\
+$d_{16} = 7 - (-3) - 5 = 5$\\
+$d_{17} = 3 - (-1) - 5 = -1$\\
+$d_{22} = 6 - (-4) - 3 = 7$\\
+$d_{23} = 4 - (-4) - 3 = 5$\\
+$d_{24} = 9 - (-1) - 3 = 7$\\
+$d_{26} = 8 - (-3) - 3 = 8$\\
+$d_{27} = 2 - (-1) - 3 = 0$\\
+$d_{31} = 7 - 0 - 5 = 2$\\
+$d_{33} = 5 - (-4) - 5 = 4$\\
+$d_{34} = 8 - (-1) - 5 = 4$\\
+Не все $d_{ij} \ge 0 \implies$ решение не оптимально.\\
+Минимальное $d_{ij} = d_{15} = -1 \implies$ клетка пересчета: (1; 5)\\
+Цикл пересчета:\\
+$(1; 5) \rightarrow (2; 5) \rightarrow (2; 4) \rightarrow (2; 3) \rightarrow (2; 2) \rightarrow (2; 1) \rightarrow (1; 1) \rightarrow (1; 2) \rightarrow (1; 3) \rightarrow (1; 4) \rightarrow (1; 5)$
+\end{flushleft}
+
+\begin{center}
+    \begin{tabular}{|a | c | c | c | c | c | c | c | c|} 
+         \hline
+         \rowcolor{LightGray}
+            & 1 & 2 & 3 & 4 & 5 & 6 & 7 & $v_{i}$\\
+         \hline
+            1 & \cellcolor{Beige} $5^{30}$ {\bf-}  & 8 & \cellcolor{Beige} $1^{70}$ & \cellcolor{Beige} $4^{50}$ & 2 {\bf+} & 7 & 3 & {\small$v_1 = 5$}\\
+         \hline
+            2 & \cellcolor{Beige} $3^{30}$ {\bf+}  & 6 & 4 & 9 & \cellcolor{Beige} $1^{70}$ {\bf-} & 8 & 2 & {\small$v_2 = 3$}\\
+         \hline
+            3 & 7 & \cellcolor{Beige} $1^{40}$ & 5 & 8 & \cellcolor{Beige} $3^{20}$ & \cellcolor{Beige} $2^{40}$ & \cellcolor{Beige} $4^{50}$ & {\small$v_3 = 5$}\\
+         \hline
+            $u_{i}$ & {\small$u_1 = 0$} & {\small$u_2 = -4$} & {\small$u_3 = -4$} & {\small$u_4 = -1$} & {\small$u_5 = -2$} & {\small$u_6 = -3$} & {\small$u_7 = -1$} & \\
+        \hline
+    \end{tabular}
+\end{center}
+
+Новый опорный план:
+\begin{center}
+    \begin{tabular}{|a | c | c | c | c | c | c | c | c|} 
+         \hline
+         \rowcolor{LightGray}
+            & 1 & 2 & 3 & 4 & 5 & 6 & 7 & $v_{i}$\\
+         \hline
+            1 & 5  & 8 & \cellcolor{Beige} $1^{70}$ & \cellcolor{Beige} $4^{50}$ & \cellcolor{Beige} $2^{30}$ & 7 & 3 & {\small$v_1 = 4$}\\
+         \hline
+            2 & \cellcolor{Beige} $3^{60}$ & 6 & 4 & 9 & \cellcolor{Beige} $1^{40}$ & 8 & 2 & {\small$v_2 = 3$}\\
+         \hline
+            3 & 7 & \cellcolor{Beige} $1^{40}$ & 5 & 8 & \cellcolor{Beige} $3^{20}$ & \cellcolor{Beige} $2^{40}$ & \cellcolor{Beige} $4^{50}$ & {\small$v_3 = 5$}\\
+         \hline
+            $u_{i}$ & {\small$u_1 = 0$} & {\small$u_2 = -4$} & {\small$u_3 = -3$} & {\small$u_4 = 0$} & {\small$u_5 = -2$} & {\small$u_6 = -3$} & {\small$u_7 = -1$} & \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\begin{flushleft}
+Число закрашенных клеток: 9\\
+$m + n - 1 = 3 + 7 - 1 = 9$\\
+Значит опорный план невырожденный\\
+Проверим на оптимальность:\\
+$d_{11} = 5 - 0 - 4 = 1$\\
+$d_{12} = 8 - (-4) - 4 = 8$\\
+$d_{16} = 7 - (-3) - 4 = 6$\\
+$d_{17} = 3 - (-1) - 4 = 0$\\
+$d_{22} = 6 - (-4) - 3 = 7$\\
+$d_{23} = 4 - (-3) - 3 = 4$\\
+$d_{24} = 9 - 0 - 3 = 6$\\
+$d_{26} = 8 - (-3) - 3 = 8$\\
+$d_{27} = 2 - (-1) - 3 = 0$\\
+$d_{31} = 7 - 0 - 5 = 2$\\
+$d_{33} = 5 - (-3) - 5 = 3$\\
+$d_{34} = 8 - 0 - 5 = 3$\\
+Все $d_{ij} \ge 0 \implies$ решение оптимально.\\
+{\bfЗначение целевой функции:\\
+$F(x) = 1 \cdot 70 + 4 \cdot 50 + 2 \cdot 30 + 3 \cdot 60 + 1 \cdot 40 + 1 \cdot 40 + 3 \cdot 20 + 2 \cdot 40 + 4 \cdot 50 = 930$}
+\end{flushleft}
+
+\newpage
+
+{\bfКод программы на Python для решения транспортной задачи (метод минимального элемента)}
+
+\begin{lstlisting}
+import numpy as np
+from scipy.optimize import linprog
+
+def transportation_problem(supplies, demands, costs):
+    if sum(supplies) != sum(demands):
+        raise ValueError("Sum of demands must be equal to sum of supplies")
+
+    supplies = np.array(supplies)
+    demands = np.array(demands)
+    costs = np.array(costs)
+
+    m, n = len(supplies), len(demands)
+    c = costs.flatten()
+    A_eq = []
+    for i in range(m):
+        row = [0] * (m * n)
+        for j in range(n):
+            row[i * n + j] = 1
+        A_eq.append(row)
+
+    for j in range(n):
+        row = [0] * (m * n)
+        for i in range(m):
+            row[i * n + j] = 1
+        A_eq.append(row)
+
+    A_eq = np.array(A_eq)
+    b_eq = np.concatenate([supplies, demands])
+
+    bounds = [(0, None) for _ in range(m * n)]
+
+    result = linprog(c, A_eq=A_eq, b_eq=b_eq, bounds=bounds, method="highs")
+
+    if not result.success:
+        raise ValueError("No solution was found: " + result.message)
+
+    allocation = result.x.reshape((m, n))
+    return allocation
+
+supplies = [150, 100, 150]
+demands = [60, 40, 70, 50, 90, 40, 50]
+costs = [
+    [5, 8, 1, 4, 2, 7, 3],
+    [3, 6, 4, 9, 1, 8, 2],
+    [7, 1, 5, 8, 3, 2, 4]
+]
+
+allocation = transportation_problem(supplies, demands, costs)
+print("Plan:")
+print(np.round(allocation).astype(int))
+
+print(sum(sum(allocation*np.array(costs))))
+\end{lstlisting}
+
+\newpage
+
+\begin{figure}[h]
+\centering
+\includegraphics[]{тз.png}
+\centering
+\caption{Результат работы программы}
+\end{figure}

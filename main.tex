@@ -1,0 +1,153 @@
+\documentclass[a4paper, 14pt]{report}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[T2A,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\setcounter{secnumdepth}{0}
+\usepackage[english, russian]{babel}
+\usepackage{geometry}
+\usepackage{esint}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{etoolbox}
+\usepackage{hyperref}
+\usepackage{color, colortbl}
+\usepackage{amsmath}
+\usepackage{bookmark}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{tikz} 
+\usepackage{stackrel}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\titleformat{\chapter}[display] {\normalfont\bfseries}{}{0pt}{\Huge}
+\renewcommand\familydefault{Times New Roman}
+
+\geometry{
+ a4paper,
+ total={297mm,210mm},
+ left=40mm,
+ right=10mm,
+ top=30mm,
+ bottom=25mm,
+}
+%\geometry{слева = 40 мм, справа = 25 мм, сверху = 35 мм, снизу = 30 мм, showframe }
+
+% Настройка колонтитулов
+\pagestyle{fancy} % Включаем кастомные колонтитулы
+\fancyhf{} % Очищаем стандартные колонтитулы
+\fancyhead[C]{\hspace{5cm}Кругликова Маргарита Б22-504} % Добавляем текст в верхний правый колонтитул
+\fancyfoot[C]{\hspace{-2cm}\thepage} % Номер страницы в нижнем центре
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4
+}
+
+\definecolor{LightBlue}{rgb}{0.82,0.95,0.95}
+\definecolor{LightGray}{rgb}{0.82,0.82,0.82}
+\definecolor{Beige}{rgb}{1,0.92,0.80}
+\definecolor{LightRed}{rgb}{0.99,0.76,0.76}
+
+\hypersetup{
+  colorlinks   = true, %Colours links instead of ugly boxes
+  urlcolor     = blue, %Colour for external hyperlinks
+  linkcolor    = black, %Colour of internal links
+  citecolor   = red %Colour of citations
+}
+
+\geometry{papersize={15cm, 11in}, left=1cm, right=2cm, top=2cm, bottom=3cm}
+
+\title{\huge Отчет по курсу \\"Методы оптимизации"}
+\author{\huge Кругликова Маргарита Б22-504}
+\date{}
+
+
+
+\makeatletter
+\pretocmd{\contentsline}
+  {\patchcmd{\@dottedtocline}
+     {\leaders}
+     {\hyper@linkstart{link}{#4}\leaders}
+     {}
+     {}%
+   \patchcmd{\@dottedtocline}
+     {\hfill}
+     {\hfill\hyper@linkend}
+     {}
+     {}}
+  {}
+  {}
+\makeatother
+
+
+\begin{document}
+
+\begin{titlepage}
+	\begin{center}
+        МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ\\
+
+        \vspace*{0.5cm}
+
+        ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ АВТОНОМНОЕ ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ\\
+        
+        \vspace*{0.5cm}
+
+        Национальный исследовательский ядерный университет «МИФИ»\\
+        Институт интеллектуальных кибернетических систем\\
+        Кафедра кибернетики (№ 22)\\
+        Направление подготовки 09.03.04 Программная инженерия\\
+
+        \includegraphics[width=0.8\textwidth]{mifi.png}
+
+		{\Large \textbf{Отчет по курсу «Методы оптимизации»}}
+
+		\vspace{1.5cm}
+
+		\textbf{Студент: Кругликова Маргарита Владимировна, Б22-504}
+
+		\vspace{0.3cm}
+
+		\textbf{Преподаватель: Елкина Дарья Юрьевна}
+
+        \vfill
+
+        Москва, 2024
+	\end{center}
+\end{titlepage}
+
+\tableofcontents
+
+\newcolumntype{g}{>{\columncolor{LightBlue}}c}
+\newcolumntype{a}{>{\columncolor{LightGray}}c}
+
+\include{task1_1.tex}
+\include{task1_2.tex}
+\include{task1_3.tex}
+\include{task3.tex}
+\include{transport.tex}
+\include{task6.tex}
+\include{komi.tex}
+\include{naznachenia.tex}
+\include{task9.tex}
+\include{task10.tex}
+
+\end{document}
